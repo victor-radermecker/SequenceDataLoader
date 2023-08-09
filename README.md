@@ -2,6 +2,19 @@
 
 The `SequenceDataLoader` class is a powerful utility for generating data in batches suitable for training and prediction using the Keras deep learning framework. This class extends the `Sequence` class from TensorFlow's Keras API, making it efficient for working with large datasets and ensuring smooth training processes. The class is designed to facilitate the preparation and loading of data for image classification tasks involving multi-label inputs, where each input is associated with multiple labels.
 
+## Goal
+
+Create a dataloader to train video predictions models using Keras. Sometimes, you have large images that you need to split into smaller ones for training. 
+The goal of this dataloader is to extract smaller regions of a larger images on-the-fly.
+
+Ouput:
+    - Sequences of images X
+    - Target Variable Y
+
+
+
+
+
 ## Key Features
 
 1. **Efficient Batch Generation**: The `SequenceDataLoader` efficiently generates batches of data for training or prediction, reducing memory overhead by loading data on-the-fly.
