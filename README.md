@@ -18,7 +18,7 @@ The loader expects an input DataFrame structured as follows:
 | 4879220  | 1225      | 0.032    | (716, 806, 761, 846) |
 | 4879221  | 1225      | 0.213    | (761, 806, 805, 846) |
 
-Here, `tile_id` corresponds to the unique identifier for each tile, `region_id` represents the larger image region containing the tiles, `target` holds the target value for regression, and `region_coordinates` specifies the coordinates of the region within the larger image.
+Here, `tile_id` corresponds to the unique identifier for each tile, `region_id` represents the larger image region containing the tiles, `target` holds the target value for regression, and `region_coordinates` specifies the upper-left and lower-right coordinates of the region within the larger image.
 
 ## Image Storage Structure
 
