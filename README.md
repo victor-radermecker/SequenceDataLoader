@@ -1,13 +1,14 @@
-# SequenceDataLoader Readme
+# SequenceDataLoader for Convolutional LSTM Regression Tasks
 
-The `SequenceDataLoader` class was designed for generating data in batches suitable for training and prediction using the Keras deep learning framework. This class extends the `Sequence` class from TensorFlow's Keras API, making it efficient for working with large datasets and ensuring smooth training processes. The class is designed to facilitate the preparation and loading of data for image classification tasks involving multi-label inputs, where each input is associated with multiple labels.
+When training video prediction models using Keras, handling large images that need to be split into smaller regions for effective training becomes crucial. The SequenceDataLoader presented here is designed to simplify this process by seamlessly extracting smaller regions from larger images on-the-fly. This enables the training of neural networks for regression tasks, facilitating accurate video prediction.
 
-## Goal
+## Overview
 
-Create a dataloader to train video predictions models using Keras. Sometimes, you have large images that you need to split into smaller ones for training. 
-The goal of this dataloader is to extract smaller regions of a larger images on-the-fly to train neural network for regression task. 
+The primary goal of the SequenceDataLoader is to streamline the process of preparing training data for video prediction models. It achieves this by dynamically extracting smaller regions from larger images, creating an efficient pipeline for neural network training. The loader is particularly useful when working with datasets where images need to be partitioned into manageable regions for analysis.
 
-The input dataframe should have the following structure:
+## Input Data Structure
+
+The loader expects an input DataFrame structured as follows:
 
 | tile_id  | region_id | target | region_coordinates   |
 |----------|-----------|--------|----------------------|
@@ -17,13 +18,29 @@ The input dataframe should have the following structure:
 | 4879220  | 1225      | 0.032    | (716, 806, 761, 846) |
 | 4879221  | 1225      | 0.213    | (761, 806, 805, 846) |
 
-The region_id are the images stored locally. They should be stored as follow:
-Images/label_id/region_id.tif You can easily change the file extension in the class itself. 
+Here, `tile_id` corresponds to the unique identifier for each tile, `region_id` represents the larger image region containing the tiles, `target` holds the target value for regression, and `region_coordinates` specifies the coordinates of the region within the larger image.
 
-As we can see here, the tile having ids 4879217, 4879218, 4879219, 4879220 and 4879221 will be extracted from image 1225
+## Image Storage Structure
 
+The images corresponding to `region_id` are stored locally in the following format:
 
+```
+Images/
+|-- label_id/
+|   |-- region_id.tif
+```
 
+You can easily customize the file extension directly within the class to suit your data.
+
+## Data Extraction Pipeline
+
+The SequenceDataLoader's data extraction pipeline is illustrated in the following diagram:
+
+![DataExtractionPipeline](https://github.com/victor-radermecker/SequenceDataLoader/blob/main/img/diagram.png?raw=true)
+
+This pipeline showcases how the loader operates by sequentially extracting smaller regions from the labeled images based on the provided coordinates. These regions are then utilized for neural network training to predict video sequences accurately.
+
+In essence, the SequenceDataLoader serves as a valuable tool for simplifying the data preparation process when training video prediction models. By seamlessly managing the extraction of smaller regions from larger images, it empowers the seamless training of neural networks for regression tasks, ultimately enhancing the accuracy of video predictions.
 
 ## Key Features
 
