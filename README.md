@@ -22,7 +22,7 @@ Images/label_id/region_id.tif You can easily change the file extension in the cl
 
 As we can see here, the tile having ids 4879217, 4879218, 4879219, 4879220 and 4879221 will be extracted from image 1225
 
-![DataExtractionPipeline]([https://github.com/yourusername/yourrepository/raw/main/path/to/your/image.png](https://github.com/victor-radermecker/SequenceDataLoader/blob/main/img/diagram.png?raw=true))
+![DataExtractionPipeline](https://github.com/victor-radermecker/SequenceDataLoader/blob/main/img/diagram.png?raw=true)
 
 
 
