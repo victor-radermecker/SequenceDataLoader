@@ -90,11 +90,6 @@ The provided image ![DataExtractionPipeline](https://github.com/victor-radermeck
 
 
 
-![DataExtractionPipeline](https://github.com/victor-radermecker/SequenceDataLoader/blob/main/img/example.png?raw=true)
-
-Explain that we have loaded images of dynamic world for one specific region from 2016 to 2022 and that we are training a convolutional LSTM on these sequences to predict the urbanization rate of 2022. 
-
-
 ## Note
 
 The provided example is a basic guide on how to use the `SequenceDataLoader` class. Depending on your specific use case and requirements, you may need to customize certain methods or add additional functionalities to suit your project's needs.
