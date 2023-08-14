@@ -86,7 +86,9 @@ data_loader = SequenceDataLoader(
 
 The `SequenceDataLoader` is initialized to load and process the training data. It loads the sequence of satellite images corresponding to the specified years, applies necessary preprocessing steps such as resizing and normalization, and creates batches of data for training. The data loader utilizes the provided `LABELS`, `IMG_DIR`, `IMG_SIZE`, `BATCH_SIZE`, `N_CHANNELS`, and `RANDOM_SEED` parameters to efficiently manage the data loading process.
 
-The provided image ![DataExtractionPipeline](https://github.com/victor-radermecker/SequenceDataLoader/blob/main/img/example.png?raw=true) illustrates the data extraction pipeline. It depicts the process of loading and preparing the sequence of satellite images for training the dynamic world model.
+The image below illustrates the data extraction pipeline. It depicts the process of loading and preparing the sequence of satellite images for training the dynamic world model.
+
+![DataExtractionPipeline](https://github.com/victor-radermecker/SequenceDataLoader/blob/main/img/example.png?raw=true) 
 
 
 
