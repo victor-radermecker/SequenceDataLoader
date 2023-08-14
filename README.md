@@ -42,63 +42,58 @@ This pipeline showcases how the loader operates by sequentially extracting small
 
 In essence, the SequenceDataLoader serves as a valuable tool for simplifying the data preparation process when training video prediction models. By seamlessly managing the extraction of smaller regions from larger images, it empowers the seamless training of neural networks for regression tasks, ultimately enhancing the accuracy of video predictions.
 
-## Key Features
-
-1. **Efficient Batch Generation**: The `SequenceDataLoader` efficiently generates batches of data for training or prediction, reducing memory overhead by loading data on-the-fly.
-
-2. **Customizable Data Loading**: This class is designed to handle datasets consisting of images, associated labels, and tabular data. It offers the flexibility to load images and tabular data, enabling more complex and diverse data preparation.
-
-3. **Region-Based Batching**: The class supports region-based batching, where batches are formed based on specified regions and their corresponding tiles. This is particularly useful for scenarios where data needs to be grouped based on spatial relationships.
-
-4. **Data Augmentation**: By modifying the `_load_region` method, data augmentation techniques can be integrated into the data loading process to improve model generalization.
-
-5. **Multi-Label Support**: The class supports multi-label classification tasks, allowing each input image to be associated with multiple labels simultaneously.
-
-## How to Use
-
-1. **Initialization**: Create an instance of the `SequenceDataLoader` class by providing the necessary parameters such as `labels`, `list_IDs`, `target`, `tile_region_dic`, `tile_coordinates`, `image_dir`, `dim`, `batch_size`, `n_channels`, and other optional parameters.
-
-2. **Data Generation**: The `__getitem__` method generates one batch of data containing both input data (`X`) and target labels (`y`). If tabular data is available, it can also be included in the output.
-
-3. **Region-Based Batching**: The `create_batches` method groups data into batches based on specified regions and tile associations. This region-based batching strategy helps maintain spatial relationships in the data.
-
-4. **Data Loading**: The `_load_region` method handles the loading and preprocessing of image data for each region and associated tiles. This method can be customized to include data augmentation techniques or other preprocessing steps.
-
-5. **Data Normalization**: The class provides an option to normalize image data if required, by setting the `normalize` parameter to `True`.
-
-6. **Data Augmentation (Optional)**: To apply data augmentation techniques, modify the `_load_region` method to perform transformations such as rotations, flips, or color adjustments.
 
 ## Example Usage
 
+### Dynamic World Model Overview
+
+The dynamic world model leverages the power of deep learning, particularly ConvLSTM networks, to capture temporal patterns in satellite images and make predictions about urbanization rates. The model takes a sequence of satellite images from multiple years (2016 to 2022) for a specific geographical region and learns to identify patterns and changes in urbanization over time.
+
+## Key Parameters
+
+- `IMG_SIZE`: The dimensions of the input images (64x64 pixels).
+- `BATCH_SIZE`: The number of image sequences to include in each training batch (256).
+- `N_CHANNELS`: The number of color channels in the images (3 for RGB).
+- `LABELS`: List of years (2016 to 2022) for which image data is available.
+- `IMG_DIR`: Directory path containing the training image data.
+- `RANDOM_SEED`: Seed value for random number generation to ensure reproducibility (42).
+- `TARGET_TYPE`: Type of target for prediction ("target" for urbanization rate of 2022).
+
 ```python
-# Initialize SequenceDataLoader
+IMG_SIZE = (64, 64)
+BATCH_SIZE = 256
+N_CHANNELS = 3
+LABELS = [2016, 2017, 2018, 2019, 2020, 2021, 2022]
+IMG_DIR = "../Images/Train"
+RANDOM_SEED = 42
+TARGET_TYPE = "target" # "last-image"
+
+# Initialize the SequenceDataLoader for training data
 data_loader = SequenceDataLoader(
-    labels=['label1', 'label2'],
-    list_IDs=list_of_ids,
-    target=target_data,
-    tile_region_dic=tile_region_mapping,
-    tile_coordinates=tile_coordinates,
-    image_dir='path_to_images',
-    dim=(128, 128),
-    batch_size=32,
-    n_channels=3,
+    labels=LABELS,
+    data=DATA,
+    image_dir=IMG_DIR,
+    dim=IMG_SIZE,
+    batch_size=BATCH_SIZE,
+    n_channels=N_CHANNELS,
+    random_seed=RANDOM_SEED,
     shuffle=True,
-    tab_data=tabular_data,
     normalize=True
 )
-
-# Iterate through batches and train your model
-for epoch in range(epochs):
-    for batch_X, batch_y in data_loader:
-        # Train your model using batch_X and batch_y
-
-# For prediction, use the same data loader
-predictions = model.predict(data_loader)
-
-# Access tabular data for each batch
-for batch_X, batch_y in data_loader:
-    batch_tab_data = batch_X[1]  # Assuming tab_data was provided during initialization
 ```
+
+## Data Loading and Processing
+
+The `SequenceDataLoader` is initialized to load and process the training data. It loads the sequence of satellite images corresponding to the specified years, applies necessary preprocessing steps such as resizing and normalization, and creates batches of data for training. The data loader utilizes the provided `LABELS`, `IMG_DIR`, `IMG_SIZE`, `BATCH_SIZE`, `N_CHANNELS`, and `RANDOM_SEED` parameters to efficiently manage the data loading process.
+
+The provided image ![DataExtractionPipeline](https://github.com/victor-radermecker/SequenceDataLoader/blob/main/img/example.png?raw=true) illustrates the data extraction pipeline. It depicts the process of loading and preparing the sequence of satellite images for training the dynamic world model.
+
+
+
+![DataExtractionPipeline](https://github.com/victor-radermecker/SequenceDataLoader/blob/main/img/example.png?raw=true)
+
+Explain that we have loaded images of dynamic world for one specific region from 2016 to 2022 and that we are training a convolutional LSTM on these sequences to predict the urbanization rate of 2022. 
+
 
 ## Note
 
