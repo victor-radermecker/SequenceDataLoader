@@ -49,7 +49,7 @@ In essence, the SequenceDataLoader serves as a valuable tool for simplifying the
 
 The dynamic world model leverages the power of deep learning, particularly ConvLSTM networks, to capture temporal patterns in satellite images and make predictions about urbanization rates. The model takes a sequence of satellite images from multiple years (2016 to 2022) for a specific geographical region and learns to identify patterns and changes in urbanization over time.
 
-## Key Parameters
+### Key Parameters
 
 - `IMG_SIZE`: The dimensions of the input images (64x64 pixels).
 - `BATCH_SIZE`: The number of image sequences to include in each training batch (256).
@@ -82,7 +82,7 @@ data_loader = SequenceDataLoader(
 )
 ```
 
-## Data Loading and Processing
+### Data Loading and Processing
 
 The `SequenceDataLoader` is initialized to load and process the training data. It loads the sequence of satellite images corresponding to the specified years, applies necessary preprocessing steps such as resizing and normalization, and creates batches of data for training. The data loader utilizes the provided `LABELS`, `IMG_DIR`, `IMG_SIZE`, `BATCH_SIZE`, `N_CHANNELS`, and `RANDOM_SEED` parameters to efficiently manage the data loading process.
 
