@@ -184,8 +184,7 @@ class SequenceDataLoader(Sequence):
             region_path = os.path.join(
                 self.image_dir,
                 str(label),
-                "Final",
-                f"landcover_batchID_{regionID}.tif",
+                f"{regionID}.tif",
             )
             img = Image.open(region_path)
 
