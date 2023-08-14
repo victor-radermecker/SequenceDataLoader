@@ -5,12 +5,22 @@ The `SequenceDataLoader` class was designed for generating data in batches suita
 ## Goal
 
 Create a dataloader to train video predictions models using Keras. Sometimes, you have large images that you need to split into smaller ones for training. 
-The goal of this dataloader is to extract smaller regions of a larger images on-the-fly.
+The goal of this dataloader is to extract smaller regions of a larger images on-the-fly to train neural network for regression task. 
 
-Ouput:
-    - Sequences of images X
-    - Target Variable Y
+The input dataframe should have the following structure:
 
+| tile_id  | region_id | target | region_coordinates   |
+|----------|-----------|--------|----------------------|
+| 4879217  | 1225      | 0.123    | (581, 806, 626, 846) |
+| 4879218  | 1225      | 0.423    | (626, 806, 671, 846) |
+| 4879219  | 1225      | 0.143    | (671, 806, 716, 846) |
+| 4879220  | 1225      | 0.032    | (716, 806, 761, 846) |
+| 4879221  | 1225      | 0.213    | (761, 806, 805, 846) |
+
+The region_id are the images stored locally. They should be stored as follow:
+Images/label_id/region_id.tif You can easily change the file extension in the class itself. 
+
+As we can see here, the tile having ids 4879217, 4879218, 4879219, 4879220 and 4879221 will be extracted from image 1225
 
 
 
