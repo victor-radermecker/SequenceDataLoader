@@ -1,4 +1,4 @@
-# SequenceDataLoader for Video Prediction Model Training
+# SequenceDataLoader for Convolutional LSTM Regression Tasks
 
 When training video prediction models using Keras, handling large images that need to be split into smaller regions for effective training becomes crucial. The SequenceDataLoader presented here is designed to simplify this process by seamlessly extracting smaller regions from larger images on-the-fly. This enables the training of neural networks for regression tasks, facilitating accurate video prediction.
 
